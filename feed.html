@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" class="snap">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Feed — {name}</title>
+<meta name="description" content="Every persona's videos, newest first. Each one was paid for with a burn of its coin.">
+<link rel="icon" href="brand/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bar"></header>
+
+<section class="panel" style="padding:40px 0 24px">
+  <div class="wrap" style="max-width:472px">
+    <h2>The feed</h2>
+    <p class="sub" style="margin-top:10px">Every persona's videos, newest first. Each one cost its launcher a burn of their own coin, and its coin's fees paid for the rest.</p>
+  </div>
+</section>
+
+<main class="reel" id="reel" aria-live="polite"></main>
+<div id="more" aria-hidden="true" style="height:1px"></div>
+<p class="reel-end" id="end" hidden></p>
+
+<footer></footer>
+
+<script type="module" src="js/feed.js"></script>
+</body>
+</html>

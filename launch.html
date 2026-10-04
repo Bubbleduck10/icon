@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch a persona — {name}</title>
+<meta name="description" content="Launch a coin on Robinhood Chain with an AI persona of your own: its personality, its face, and the short videos it stars in.">
+<link rel="icon" href="brand/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bar"></header>
+
+<section class="panel" style="padding-bottom:24px">
+  <div class="wrap">
+    <p class="kicker">Launch a persona</p>
+    <h1 style="font-size:clamp(44px,6.4vw,84px)">Give a coin<br class="br-wide"> a face.</h1>
+    <p class="lede">Name the coin, give its persona a face and a character, and launch. Then burn the coin to have it star in short videos. The face and the character are permanent once it launches.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <form class="lform" id="form" novalidate autocomplete="off">
+
+      <div class="lsec">
+        <div class="lsec-head"><span class="num">00</span><h3>The chain</h3><p>Where the coin lives. Personas, faces and videos work the same on both.</p></div>
+        <div class="lsec-body">
+          <div class="chains" role="radiogroup" aria-label="Chain">
+            <label class="chainopt"><input type="radio" name="chain" value="solana" checked><b>Solana</b><span>Launched on pump.fun. Its treasury is a wallet our service guards. Pay with SOL; Phantom.</span></label>
+            <label class="chainopt" id="chain-rh"><input type="radio" name="chain" value="robinhood"><b>Robinhood Chain <em class="soon" hidden>Coming soon</em></b><span>Launched on Pons. Its vault contract enforces every limit in code. Pay with ETH; MetaMask or Rabby.</span></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <div class="lsec-head"><span class="num">01</span><h3>The coin</h3><p>What people see on Pons or pump.fun and in their wallets. Its persona's face becomes its logo.</p></div>
+        <div class="lsec-body">
+          <div class="frow">
+            <div class="fi"><label for="f-name">Name</label><input id="f-name" maxlength="32" placeholder="Nova" required></div>
+            <div class="fi"><label for="f-symbol">Ticker</label><input id="f-symbol" maxlength="10" placeholder="NOVA" required style="text-transform:uppercase"></div>
+          </div>
+          <div class="fi">
+            <label for="f-desc">Description</label>
+            <textarea id="f-desc" maxlength="600" placeholder="What this coin is about, in a sentence or two."></textarea>
+            <span class="hint"><span>Shown on Pons. The persona reads it too.</span><span id="c-desc">0 / 600</span></span>
+          </div>
+          <div class="frow three">
+            <div class="fi"><label for="f-x">X <span class="opt">optional</span></label><input id="f-x" placeholder="https://x.com/…"></div>
+            <div class="fi"><label for="f-tg">Telegram <span class="opt">optional</span></label><input id="f-tg" placeholder="https://t.me/…"></div>
+            <div class="fi"><label for="f-web">Website <span class="opt">optional</span></label><input id="f-web" placeholder="https://…"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <div class="lsec-head"><span class="num">02</span><h3>The face</h3><p>Describe how your persona looks, and four faces are generated to choose from. Personas are invented people: anything that names or resembles a real person is refused.</p></div>
+        <div class="lsec-body">
+          <div class="fi">
+            <label for="f-look">Its look</label>
+            <div class="chips" id="pp-look"></div>
+            <textarea id="f-look" maxlength="600" placeholder="Age, hair, eyes, style, mood. For example: a woman in her thirties with short silver hair, green eyes and a calm, knowing smile."></textarea>
+            <span class="hint"><span id="look-hint">Generating takes up to a minute.</span><span id="c-look">0 / 600</span></span>
+          </div>
+          <div class="cta" style="margin-top:0">
+            <button class="btn" type="button" id="gen">Generate faces</button>
+            <span class="note" id="gen-note"></span>
+          </div>
+          <div class="faces" id="faces" role="radiogroup" aria-label="Choose a face" hidden></div>
+          <p class="mp-picked" id="face-picked" hidden></p>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <div class="lsec-head"><span class="num">03</span><h3>Its character</h3><p>Who it is and what it is trying to do. Both are checked by two safety models before launch, and then fixed: their fingerprint, with the face, is written into the coin's vault.</p></div>
+        <div class="lsec-body">
+          <div class="fi">
+            <label for="f-pers">Personality</label>
+            <div class="chips" id="pp-pers"></div>
+            <textarea id="f-pers" maxlength="1200" placeholder="How it talks and what it cares about."></textarea>
+            <span class="hint"><span>Voice, temperament, quirks. It shapes every video.</span><span id="c-pers">0 / 1200</span></span>
+          </div>
+          <div class="fi">
+            <label for="f-obj">Objective</label>
+            <div class="chips" id="pp-obj"></div>
+            <textarea id="f-obj" maxlength="1200" placeholder="What it should try to achieve with its treasury."></textarea>
+            <span class="hint"><span>It steers the persona's choices. It cannot widen the vault's limits.</span><span id="c-obj">0 / 1200</span></span>
+          </div>
+          <div class="lnote">
+            <p>The character can shape how the persona talks and spends, but never what it is allowed to spend. Text that tries to give it new powers, such as sending funds somewhere or ignoring its rules, is refused before launch, with the reason.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lsec">
+        <div class="lsec-head"><span class="num">04</span><h3>Launch</h3><p>One transaction from your wallet on Robinhood Chain.</p></div>
+        <div class="lsec-body">
+          <ul class="terms" id="terms">
+            <li><span>Launch fee (Pons)</span><b id="tm-fee">…</b></li>
+            <li><span>Fee on every trade</span><b id="tm-tax">…</b></li>
+            <li><span>Your share of the fees</span><b>None. It all goes to the coin's vault.</b></li>
+            <li><span>Each video</span><b id="tm-video">…</b></li>
+          </ul>
+          <div class="fi" id="sol-firstbuy" hidden>
+            <label for="f-firstbuy">First buy <span class="opt">optional, in SOL</span></label>
+            <input id="f-firstbuy" inputmode="decimal" placeholder="0.5">
+            <span class="hint"><span>Bought in the launch transaction itself, before anyone else can trade.</span></span>
+          </div>
+          <label class="check"><input type="checkbox" id="ack-perm"> <span>I understand the face and the character are permanent, that I receive none of this coin's fees, and that only I can request its videos, by burning my own tokens.</span></label>
+          <label class="check"><input type="checkbox" id="ack-risk"> <span>I understand the persona is an AI acting on its own inside fixed limits, and that it can make poor choices with its treasury.</span></label>
+          <div class="cta" style="margin-top:8px">
+            <button class="btn go" type="submit" id="go">Connect wallet</button>
+            <span class="note" id="who"></span>
+          </div>
+          <p class="lstatus" id="status" role="status"></p>
+          <ol class="steps" id="steps" hidden>
+            <li data-s="file"><span class="ic"></span><div>Check and file the persona<span class="why"></span></div></li>
+            <li data-s="build" hidden><span class="ic"></span><div>Build the launch on pump.fun<span class="why"></span></div></li>
+            <li data-s="sign"><span class="ic"></span><div>Confirm the launch in your wallet<span class="why"></span></div></li>
+            <li data-s="mine"><span class="ic"></span><div>Wait for Robinhood Chain<span class="why"></span></div></li>
+          </ol>
+
+          <div class="done-box" id="done" hidden>
+            <div class="card">
+              <h3 id="done-title">Launched.</h3>
+              <p id="done-sub">Buy some of your coin, then burn it from the coin's page to request your persona's first video.</p>
+              <div class="row">
+                <a class="btn go" id="done-open" href="#">Open its page</a>
+                <a class="btn ghost" id="done-tx" href="#" rel="noopener" target="_blank">View the transaction</a>
+              </div>
+              <div id="devbuy" hidden>
+                <p style="margin-top:22px;color:var(--white);font-weight:600">Buy the first tokens <span style="color:var(--card-grey);font-weight:400">optional</span></p>
+                <p>Pons taxes a buy in the launch block at 99%, falling to zero over three seconds, so this unlocks a few seconds after launch. A buy that would still pay that tax fails instead of going through.</p>
+                <div class="row">
+                  <input id="db-eth" inputmode="decimal" placeholder="0.05" aria-label="ETH to spend">
+                  <button class="btn go" type="button" id="db-go" disabled>Buy</button>
+                </div>
+                <p class="q" id="db-q"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<footer></footer>
+
+<script type="module" src="js/launch.js"></script>
+</body>
+</html>
