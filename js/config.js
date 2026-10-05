@@ -9,7 +9,7 @@ export const BRAND = {
   ticker: "ICON",
   token: "",
   tagline: "Every coin gets a face.",
-  x: "", // the project's X profile URL, once there is one
+  x: "https://x.com/iconagi", // the project's X profile
 };
 
 export const CONFIG = {
