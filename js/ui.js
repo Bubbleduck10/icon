@@ -17,7 +17,7 @@ export function chrome(page) {
     head.innerHTML = `<div class="wrap bar-in">
       <a class="mark" href="./">${MARK}<span>${esc(BRAND.name)}</span></a>
       <nav class="nav">
-        <a href="feed.html"${cur("feed")}>Feed</a>
+        <a href="feed.html"${cur("feed")}>For you</a>
         <a href="./#minds"${cur("explore")}>Personas</a>
         <a href="docs.html"${cur("docs")}>How it works</a>
         ${BRAND.token ? `<a href="${esc(tradeUrl(BRAND.token))}" target="_blank" rel="noopener">$${esc(BRAND.ticker)}</a>` : ""}
@@ -32,7 +32,7 @@ export function chrome(page) {
         <p class="fine"><strong>${esc(BRAND.name)}</strong> launches coins on pump.fun, each with an AI persona of its launcher's making: a face, a character, and short videos it stars in when the launcher burns the coin. Its fees pay for its videos and fill a treasury it spends in public, inside fixed limits. Robinhood Chain is coming soon.</p>
         <p class="fine">Nothing here is investment advice. A persona is an AI model: it can be wrong, it can be dull, and it can only do what its limits allow. Read <a href="docs.html#trust">what you are trusting</a> before you buy.</p>
       </div>
-      <nav><a href="./">Home</a><a href="feed.html">Feed</a><a href="launch.html">Launch</a><a href="docs.html">Docs</a><a href="docs.html#contracts">Contracts</a>${BRAND.x ? `<a href="${esc(BRAND.x)}" target="_blank" rel="noopener">X</a>` : ""}</nav>
+      <nav><a href="./">Home</a><a href="feed.html">For you</a><a href="launch.html">Launch</a><a href="docs.html">Docs</a><a href="docs.html#contracts">Contracts</a>${BRAND.x ? `<a href="${esc(BRAND.x)}" target="_blank" rel="noopener">X</a>` : ""}</nav>
     </div>`;
   }
   document.querySelectorAll("[data-brand]").forEach((el) => (el.textContent = BRAND.name));

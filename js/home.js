@@ -110,8 +110,8 @@ async function showVideo() {
   if (playing === `${v[0].token}-${v[0].id}`) return true;
   playing = `${v[0].token}-${v[0].id}`;
   clearInterval(typing);
-  $("hp-cap").textContent = "Newest on the feed";
-  $("hp-card").outerHTML = `<div id="hp-card">${clipHtml(v[0])}<div class="tile-cap" style="padding:14px 2px 0"><a href="feed.html" >Watch the feed →</a></div></div>`;
+  $("hp-cap").textContent = "Newest on For you";
+  $("hp-card").outerHTML = `<div id="hp-card">${clipHtml(v[0])}<div class="tile-cap" style="padding:14px 2px 0"><a href="feed.html">See more on For you →</a></div></div>`;
   wireClips($("hp-card"));
   return true;
 }
