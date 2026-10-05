@@ -67,8 +67,15 @@ async function loadTerms() {
   renderTerms();
 }
 
+// The launch page's words that depend on where the coin launches.
+const CHAIN_COPY = {
+  solana: { venue: "pump.fun", bound: "the coin's launch metadata", how: "One transaction from your Solana wallet.", wait: "Send it to Solana" },
+  robinhood: { venue: "Pons", bound: "the coin's vault", how: "One transaction from your wallet on Robinhood Chain.", wait: "Wait for Robinhood Chain" },
+};
+
 function renderTerms() {
   terms = chain === "solana" ? solTerms : evmTerms;
+  document.querySelectorAll("[data-chain]").forEach((el) => (el.textContent = CHAIN_COPY[chain][el.dataset.chain]));
   $("go").disabled = false;
   $("gen").disabled = false;
   status("");

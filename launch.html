@@ -47,7 +47,7 @@
       </div>
 
       <div class="lsec">
-        <div class="lsec-head"><span class="num">01</span><h3>The coin</h3><p>What people see on Pons or pump.fun and in their wallets. Its persona's face becomes its logo.</p></div>
+        <div class="lsec-head"><span class="num">01</span><h3>The coin</h3><p>What people see on <span data-chain="venue">pump.fun</span> and in their wallets. Its persona's face becomes its logo.</p></div>
         <div class="lsec-body">
           <div class="frow">
             <div class="fi"><label for="f-name">Name</label><input id="f-name" maxlength="32" placeholder="Nova" required></div>
@@ -56,7 +56,7 @@
           <div class="fi">
             <label for="f-desc">Description</label>
             <textarea id="f-desc" maxlength="600" placeholder="What this coin is about, in a sentence or two."></textarea>
-            <span class="hint"><span>Shown on Pons. The persona reads it too.</span><span id="c-desc">0 / 600</span></span>
+            <span class="hint"><span>Shown on <span data-chain="venue">pump.fun</span>. The persona reads it too.</span><span id="c-desc">0 / 600</span></span>
           </div>
           <div class="frow three">
             <div class="fi"><label for="f-x">X <span class="opt">optional</span></label><input id="f-x" placeholder="https://x.com/…"></div>
@@ -85,7 +85,7 @@
       </div>
 
       <div class="lsec">
-        <div class="lsec-head"><span class="num">03</span><h3>Its character</h3><p>Who it is and what it is trying to do. Both are checked by two safety models before launch, and then fixed: their fingerprint, with the face, is written into the coin's vault.</p></div>
+        <div class="lsec-head"><span class="num">03</span><h3>Its character</h3><p>Who it is and what it is trying to do. Both are checked by two safety models before launch, and then fixed: their fingerprint, with the face, is written into <span data-chain="bound">the coin's launch metadata</span>.</p></div>
         <div class="lsec-body">
           <div class="fi">
             <label for="f-pers">Personality</label>
@@ -97,7 +97,7 @@
             <label for="f-obj">Objective</label>
             <div class="chips" id="pp-obj"></div>
             <textarea id="f-obj" maxlength="1200" placeholder="What it should try to achieve with its treasury."></textarea>
-            <span class="hint"><span>It steers the persona's choices. It cannot widen the vault's limits.</span><span id="c-obj">0 / 1200</span></span>
+            <span class="hint"><span>It steers the persona's choices. It cannot widen the treasury's limits.</span><span id="c-obj">0 / 1200</span></span>
           </div>
           <div class="lnote">
             <p>The character can shape how the persona talks and spends, but never what it is allowed to spend. Text that tries to give it new powers, such as sending funds somewhere or ignoring its rules, is refused before launch, with the reason.</p>
@@ -106,12 +106,12 @@
       </div>
 
       <div class="lsec">
-        <div class="lsec-head"><span class="num">04</span><h3>Launch</h3><p>One transaction from your wallet on Robinhood Chain.</p></div>
+        <div class="lsec-head"><span class="num">04</span><h3>Launch</h3><p data-chain="how">One transaction from your Solana wallet.</p></div>
         <div class="lsec-body">
           <ul class="terms" id="terms">
-            <li><span>Launch fee (Pons)</span><b id="tm-fee">…</b></li>
+            <li><span>Launch fee</span><b id="tm-fee">…</b></li>
             <li><span>Fee on every trade</span><b id="tm-tax">…</b></li>
-            <li><span>Your share of the fees</span><b>None. It all goes to the coin's vault.</b></li>
+            <li><span>Your share of the fees</span><b>None. It all goes to the coin's treasury.</b></li>
             <li><span>Each video</span><b id="tm-video">…</b></li>
           </ul>
           <div class="fi" id="sol-firstbuy" hidden>
@@ -130,7 +130,7 @@
             <li data-s="file"><span class="ic"></span><div>Check and file the persona<span class="why"></span></div></li>
             <li data-s="build" hidden><span class="ic"></span><div>Build the launch on pump.fun<span class="why"></span></div></li>
             <li data-s="sign"><span class="ic"></span><div>Confirm the launch in your wallet<span class="why"></span></div></li>
-            <li data-s="mine"><span class="ic"></span><div>Wait for Robinhood Chain<span class="why"></span></div></li>
+            <li data-s="mine"><span class="ic"></span><div><span data-chain="wait">Send it to Solana</span><span class="why"></span></div></li>
           </ol>
 
           <div class="done-box" id="done" hidden>
