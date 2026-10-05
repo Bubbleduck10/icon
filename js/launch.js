@@ -1,11 +1,10 @@
 // The launch: generate faces and pick one, file the persona (the service's
-// firewall checks it, pins the face and returns its fingerprint), then:
-//   Robinhood Chain: one wallet transaction to the factory, which deploys the
-//     coin's vault and has the vault launch the coin on Pons;
-//   Solana: the service builds a pump.fun launch that routes 100% of creator
-//     fees to the coin's own treasury wallet, the launcher's wallet signs it,
-//     and the service checks it is unchanged, adds the new mint's signature and
-//     sends it. Either way the face is the coin's logo.
+// firewall checks it, pins the face and returns its fingerprint), then one
+// wallet transaction to the factory, which deploys the coin's vault and has the
+// vault launch the coin on Pons. The face is the coin's logo.
+//
+// Icon runs on Robinhood Chain only. The Solana path below (pump.fun launches
+// through the service) is kept but unreachable: `chain` is never "solana".
 
 import { CONFIG } from "./config.js";
 import { $, esc, chrome, api, eth, weiToEth, tx as txUrl } from "./ui.js";
@@ -40,7 +39,7 @@ const OBJECTIVES = {
 let terms = null;
 let evmTerms = null;
 let solTerms = null;
-let chain = "solana";
+let chain = "robinhood";
 let face = null; // { id, url }
 let account = null;
 let launched = null;
@@ -55,15 +54,8 @@ const tokens = (wei) => Math.floor(weiToEth(wei)).toLocaleString("en-US");
 /* ---------------- terms ---------------- */
 
 async function loadTerms() {
-  const [e, s] = await Promise.all([api("/api/terms"), api("/api/terms?chain=solana")]);
+  const e = await api("/api/terms");
   evmTerms = e && !e.error ? e : null;
-  solTerms = s && !s.error ? s : null;
-  // A chain without a deployment is shown as coming soon and cannot be picked.
-  const rhSoon = !evmTerms || evmTerms.enabled === false;
-  $("chain-rh").classList.toggle("off", rhSoon);
-  $("chain-rh").querySelector(".soon").hidden = !rhSoon;
-  $("chain-rh").querySelector("input").disabled = rhSoon;
-  if (rhSoon && chain === "robinhood") document.querySelector('input[name="chain"][value="solana"]').click();
   renderTerms();
 }
 
@@ -79,10 +71,12 @@ function renderTerms() {
   $("go").disabled = false;
   $("gen").disabled = false;
   status("");
-  if (!terms || (chain === "solana" && !terms.enabled)) {
-    for (const id of ["tm-fee", "tm-tax", "tm-video"]) $(id).textContent = "unavailable";
-    status(chain === "solana" ? "Solana launches are not switched on yet." : "The service is not answering, so a launch cannot be prepared right now. Try again in a minute.", "err");
+  if (!terms || terms.enabled === false) {
+    for (const id of ["tm-fee", "tm-tax", "tm-video"]) $(id).textContent = terms ? "set when launches open" : "unavailable";
+    // Until the factory is deployed nothing can launch, so nothing is generated either.
+    status(terms ? "Launches open soon, once Icon's factory is deployed on Robinhood Chain." : "The service is not answering, so a launch cannot be prepared right now. Try again in a minute.", "err");
     $("go").disabled = true;
+    $("gen").disabled = !!terms;
     return;
   }
   if (chain === "solana") {

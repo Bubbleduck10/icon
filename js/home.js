@@ -1,5 +1,5 @@
 import { CONFIG } from "./config.js";
-import { $, esc, chrome, api, logoHtml, usd, ago, modelShort, reduced, clipHtml, wireClips, amount, chainName } from "./ui.js";
+import { $, esc, chrome, api, logoHtml, usd, eth, weiToEth, ago, modelShort, reduced, clipHtml, wireClips, amount, chainName } from "./ui.js";
 
 chrome("home");
 
@@ -21,15 +21,22 @@ async function loadStats() {
   $("s-videos").textContent = (s.videos ?? 0).toLocaleString("en-US");
 }
 
-// The split's stage thresholds are fixed in SOL; the dollar figure uses the day's price.
+// The fee and the split's stage thresholds come from the factory (fixed in ETH);
+// the dollar figure uses the day's price. Until the factory is deployed the
+// terms carry no numbers, and the page's own defaults stand.
 async function loadTerms() {
-  const sol = await api("/api/terms?chain=solana");
-  if (!sol || sol.error || sol.wakeSol == null) return;
-  const show = (v) => (sol.solUsd ? `~${usd(v * sol.solUsd)}` : amount(v, "SOL", 3));
-  $("b1").textContent = `The first ${show(sol.wakeSol)}`;
-  $("b2").textContent = `Up to ${show(sol.bootstrapSol)}`;
-  $("b1").title = amount(sol.wakeSol, "SOL", 3);
-  $("b2").title = amount(sol.bootstrapSol, "SOL", 3);
+  const t = await api("/api/terms");
+  if (!t || t.error || t.enabled === false) return;
+  $("t-tax").textContent = `${(100 + t.creatorTaxBps) / 100}%`;
+  // Pons keeps 30% of its own 1% curve fee and passes 70% to the coin's fee
+  // recipient (protocolFeeShareBps, measured on a fork); the creator tax is all the vault's.
+  $("t-vault").textContent = `${(t.creatorTaxBps + 70) / 100}%`;
+  const price = (await api("/api/stats"))?.ethUsd;
+  const show = (wei) => (price ? `~${usd(weiToEth(wei) * price)}` : eth(weiToEth(wei), 4));
+  $("b1").textContent = `The first ${show(t.wakeWei)}`;
+  $("b2").textContent = `Up to ${show(t.bootstrapWei)}`;
+  $("b1").title = eth(weiToEth(t.wakeWei), 4);
+  $("b2").title = eth(weiToEth(t.bootstrapWei), 4);
 }
 
 /* ---------------- the cards ---------------- */

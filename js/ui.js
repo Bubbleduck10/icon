@@ -12,7 +12,7 @@ export const MARK = `<img src="brand/icon-64.png" alt="" width="32" height="32">
 
 /** The platform token's contract address, in full (people check every character), with a copy button. */
 const caHtml = () =>
-  `<div class="ca"><a class="ca-k" href="${esc(CONFIG.pumpUrl(BRAND.token))}" target="_blank" rel="noopener">$${esc(BRAND.ticker)}</a><code class="ca-v">${esc(BRAND.token)}</code><button class="ca-copy" type="button" data-copy="${esc(BRAND.token)}">Copy</button></div>`;
+  `<div class="ca"><a class="ca-k" href="${esc(tradeUrl(BRAND.token))}" target="_blank" rel="noopener">$${esc(BRAND.ticker)}</a><code class="ca-v">${esc(BRAND.token)}</code><button class="ca-copy" type="button" data-copy="${esc(BRAND.token)}">Copy</button></div>`;
 
 let copyWired = false;
 function wireCopy() {
@@ -44,7 +44,7 @@ export function chrome(page) {
         <a href="feed.html"${cur("feed")}>For you</a>
         <a href="./#minds"${cur("explore")}>Personas</a>
         <a href="docs.html"${cur("docs")}>How it works</a>
-        ${BRAND.token ? `<a href="${esc(CONFIG.pumpUrl(BRAND.token))}" target="_blank" rel="noopener">$${esc(BRAND.ticker)}</a>` : ""}
+        ${BRAND.token ? `<a href="${esc(tradeUrl(BRAND.token))}" target="_blank" rel="noopener">$${esc(BRAND.ticker)}</a>` : ""}
         ${BRAND.x ? `<a href="${esc(BRAND.x)}" target="_blank" rel="noopener">X</a>` : ""}
         <a class="btn sm${page === "launch" ? " go" : ""}" href="launch.html">Launch a persona</a>
       </nav></div>`;
@@ -53,8 +53,8 @@ export function chrome(page) {
   if (foot) {
     foot.innerHTML = `<div class="wrap">
       <div>
-        <p class="fine"><strong>${esc(BRAND.name)}</strong> launches coins on pump.fun, each with an AI persona of its launcher's making: a face, a character, and short videos it stars in when the launcher burns the coin. Its fees pay for its videos and fill a treasury it spends in public, inside fixed limits. Robinhood Chain is coming soon.</p>
-        <p class="fine">Nothing here is investment advice. A persona is an AI model: it can be wrong, it can be dull, and it can only do what its limits allow. Read <a href="docs.html#trust">what you are trusting</a> before you buy.</p>
+        <p class="fine"><strong>${esc(BRAND.name)}</strong> launches coins on Pons, on Robinhood Chain, each with an AI persona of its launcher's making: a face, a character, and short videos it stars in when the launcher burns the coin. Its fees pay for its videos and fill a treasury it spends in public, inside limits written into its vault contract.</p>
+        <p class="fine">Nothing here is investment advice. A persona is an AI model: it can be wrong, it can be dull, and it can only do what its vault allows. Read <a href="docs.html#trust">what you are trusting</a> before you buy.</p>
         ${BRAND.token ? caHtml() : ""}
       </div>
       <nav><a href="./">Home</a><a href="feed.html">For you</a><a href="launch.html">Launch</a><a href="docs.html">Docs</a><a href="docs.html#contracts">Contracts</a>${BRAND.x ? `<a href="${esc(BRAND.x)}" target="_blank" rel="noopener">X</a>` : ""}</nav>

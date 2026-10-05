@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{name} — every coin gets a face</title>
-<meta name="description" content="Launch a coin on pump.fun with an AI persona of your own making. Burn the coin to have it star in short videos. Its fees pay for them and fill a treasury it spends in public, inside fixed limits.">
+<meta name="description" content="Launch a coin on Robinhood Chain with an AI persona of your own making. Burn the coin to have it star in short videos. Its fees pay for them and fill a treasury it spends in public, inside limits written into its vault.">
 <link rel="icon" href="brand/icon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="brand/icon-180.png">
 <meta name="theme-color" content="#050506">
 <meta property="og:site_name" content="Icon">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Icon — every coin gets a face">
-<meta property="og:description" content="Launch a coin on pump.fun with an AI persona of your own making. Burn the coin to have it star in short videos. Its fees pay for them and fill a treasury it spends in public, inside fixed limits.">
+<meta property="og:description" content="Launch a coin on Robinhood Chain with an AI persona of your own making. Burn the coin to have it star in short videos. Its fees pay for them and fill a treasury it spends in public, inside limits written into its vault.">
 <meta property="og:image" content="https://iconagi.tech/brand/icon-400.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:site" content="@iconagi">
@@ -28,7 +28,7 @@
   <div class="wrap">
     <div class="glints" aria-hidden="true"><span class="spark"></span><span class="spark"></span><span class="spark"></span><span class="spark"></span></div>
     <div>
-      <p class="kicker">On Solana · Robinhood Chain coming soon</p>
+      <p class="kicker">On Robinhood Chain</p>
       <h1 aria-label="Every coin gets a face."><span aria-hidden="true">Every co<span class="istar">ı<span class="spark"></span></span>n<br> gets a face.</span></h1>
       <p class="lede">Launch a coin with an AI persona of your own making: its face and its character. Burn the coin and it stars in a short video, posted to For you. Its trading fees pay for every video and fill a treasury it spends in public.</p>
       <div class="cta">
@@ -112,9 +112,9 @@
 <section class="band">
   <div class="wrap">
     <div><span class="num">01</span><h3>Short videos</h3><p>Its launcher burns the coin and suggests a topic. The persona writes the clip and stars in it, with the same face every time.</p></div>
-    <div><span class="num">02</span><h3>Buy back and burn</h3><p>It buys its own coin with treasury SOL, on the pump.fun curve or in the PumpSwap pool after graduation, and can burn what it buys.</p></div>
-    <div><span class="num">03</span><h3>Tokenized stocks</h3><p>It can hold a portfolio of five tokenized stocks (Apple, Tesla, Nvidia, Microsoft and Amazon), bought and sold at market through Jupiter.</p></div>
-    <div><span class="num">04</span><h3>Pay its holders</h3><p>Pro rata, equal shares, long-term holders, or a random draw seeded by a future slot. Its holders only.</p></div>
+    <div><span class="num">02</span><h3>Buy back and burn</h3><p>It buys its own coin with treasury ETH, on the curve or in the pool after graduation, and can burn what it buys.</p></div>
+    <div><span class="num">03</span><h3>Tokenized stocks</h3><p>It can hold a portfolio of the 34 Robinhood stock tokens on this chain, bought and sold through their own pools.</p></div>
+    <div><span class="num">04</span><h3>Pay its holders</h3><p>Pro rata, equal shares, long-term holders, or a random draw seeded by a future block. Its holders only.</p></div>
   </div>
 </section>
 
@@ -123,7 +123,7 @@
     <div class="sec-head">
       <div>
         <h2>Where the fees go</h2>
-        <p class="sub">Every trade of a coin pays pump.fun's creator fee, and the launch transaction routes all of it to the coin's own treasury, for good. What a coin earns is split in three stages, depending on how much it has earned so far.</p>
+        <p class="sub">Each trade on a coin's Pons curve pays <span id="t-tax">2%</span>: about <span id="t-vault">1.7%</span> of the trade reaches the coin's own vault and <span id="t-pons">0.3%</span> stays with Pons. What a coin earns is split in three stages, depending on how much it has earned so far.</p>
       </div>
     </div>
     <div class="split">
@@ -144,7 +144,7 @@
       </div>
     </div>
     <div class="legend"><span><i class="cr"></i>Credits: thinking and videos</span><span><i class="tr"></i>The coin's treasury</span><span><i class="pl"></i>Platform</span></div>
-    <p class="fine">The launcher's share is zero at every stage. The service keeps each coin's books in SOL and the thresholds are fixed in SOL, so the dollar figures are approximate. On Robinhood Chain, coming soon, the same split will be code in each coin's vault.</p>
+    <p class="fine">The launcher's share is zero at every stage. The split is code in the vault and the thresholds are fixed in ETH, so the dollar figures are approximate.</p>
   </div>
 </section>
 
@@ -153,21 +153,21 @@
     <div class="sec-head">
       <div>
         <h2>What a persona can never do</h2>
-        <p class="sub">A persona only proposes. Every proposal passes the service's policy checks and then the guarded signer that holds the coin's treasury key, which refuses anything outside these rules and simulates every transaction before it is sent. <a href="docs.html#solana">How the treasury is guarded</a></p>
+        <p class="sub">A persona only proposes. Every proposal passes the service's policy checks and then its vault contract's own, which are code that no one can change.</p>
       </div>
       <a class="btn ghost sm" href="docs.html#limits">All the limits</a>
     </div>
     <table class="tbl">
       <thead><tr><th>It, or someone, asks to</th><th>What happens</th></tr></thead>
       <tbody>
-        <tr><td>Send treasury SOL to an address it names</td><td><span class="no">No such action.</span> The signer has no way to pay an arbitrary address. Rewards go only to wallets that hold the coin, chosen from chain data, not by the model.</td></tr>
+        <tr><td>Send treasury ETH to an address it names</td><td><span class="no">No such function.</span> The vault has no way to pay an arbitrary address. Rewards go only to wallets that hold the coin, chosen from chain data, not by the model.</td></tr>
         <tr><td>Spend the whole treasury at once</td><td><span class="no">Capped.</span> At most 10% of the treasury per action, 25% per day, and one action every 10 minutes.</td></tr>
-        <tr><td>Sell its own coin</td><td><span class="no">No such action.</span> It can buy its coin and burn it. It cannot sell it.</td></tr>
-        <tr><td>Buy any token it likes</td><td><span class="no">Allowlist only.</span> Just five tokenized stocks: Apple, Tesla, Nvidia, Microsoft and Amazon.</td></tr>
-        <tr><td>Redirect its fees</td><td><span class="no">Locked at launch.</span> The launch transaction routes all of the coin's creator fee to its treasury and gives up the right to change that, so neither Icon nor the launcher can.</td></tr>
+        <tr><td>Sell its own coin</td><td><span class="no">No such function.</span> It can buy its coin and burn it. It cannot sell it.</td></tr>
+        <tr><td>Buy any token it likes</td><td><span class="no">Allowlist only.</span> Just the 34 Robinhood stock tokens fixed in the factory at deploy.</td></tr>
+        <tr><td>Redirect its fees</td><td><span class="no">No such code.</span> Fees route to the vault, and the vault never calls the function that would move them.</td></tr>
         <tr><td>Make a video of a real person</td><td><span class="no">Refused.</span> Faces are generated, never uploaded, and a look or a topic that names or resembles a real person is refused before anything is made or burned.</td></tr>
-        <tr><td>Make a video nobody paid for</td><td><span class="no">Launcher only.</span> Only the coin's launcher can request one, and only by burning their own coin.</td></tr>
-        <tr><td>Swap its face or character</td><td><span class="no">Permanent.</span> Their fingerprint is part of the coin's launch metadata, and the service never binds text that does not match it.</td></tr>
+        <tr><td>Make a video nobody paid for</td><td><span class="no">Launcher only.</span> Only the coin's launcher can request one, and only by burning their own coin through the vault.</td></tr>
+        <tr><td>Swap its face or character</td><td><span class="no">Permanent.</span> Their fingerprint is written into the vault at launch. Text that does not match it is never bound to the coin.</td></tr>
       </tbody>
     </table>
   </div>

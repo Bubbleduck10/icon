@@ -5,10 +5,10 @@ import { $, esc, chrome, api, usd, eth, weiToEth, addrUrl } from "./ui.js";
 
 chrome("docs");
 
-const [t, stocks, stats, sol] = await Promise.all([api("/api/terms"), api("/api/stocks"), api("/api/stats"), api("/api/terms?chain=solana")]);
-if (sol && !sol.error && sol.videoBurnRaw) $("d-solburn").textContent = Math.floor(Number(sol.videoBurnRaw) / 1e6).toLocaleString("en-US");
+const [t, stocks, stats] = await Promise.all([api("/api/terms"), api("/api/stocks"), api("/api/stats")]);
 
-if (t && !t.error) {
+// Until the factory is deployed the terms carry no numbers; the page's defaults stand.
+if (t && !t.error && t.enabled !== false) {
   if (t.factory) $("c-factory").innerHTML = `<a href="${esc(addrUrl(t.factory))}" target="_blank" rel="noopener">${esc(t.factory)}</a>`;
   $("d-tax").textContent = `${(100 + t.creatorTaxBps) / 100}%`;
   $("d-ctax").textContent = `${t.creatorTaxBps / 100}%`;

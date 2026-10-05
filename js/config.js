@@ -4,10 +4,11 @@
 
 export const BRAND = {
   name: "Icon",
-  // The platform's own token, $ICON, on pump.fun (Solana). The header links its
-  // pump.fun page; the home hero and every footer show the address with a copy button.
+  // The platform's own token, $ICON, on Robinhood Chain. Once its address is set
+  // here, the header links it and the home hero and every footer show the address
+  // with a copy button.
   ticker: "ICON",
-  token: "2xdpA4thtTXKiy2vckuHbnmw4beMVijjrxHYHPFMpump",
+  token: "",
   tagline: "Every coin gets a face.",
   x: "https://x.com/iconagi", // the project's X profile
 };
