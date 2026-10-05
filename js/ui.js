@@ -8,7 +8,7 @@ export const $ = (id) => document.getElementById(id);
 export const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-export const MARK = `<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#0f0f0f"/><circle cx="16" cy="16" r="8.5" fill="#ccff00"/><circle cx="18.6" cy="13.8" r="3.2" fill="#0f0f0f"/></svg>`;
+export const MARK = `<img src="brand/icon-64.png" alt="" width="32" height="32">`;
 
 export function chrome(page) {
   const head = document.querySelector("header.bar");

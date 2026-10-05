@@ -393,7 +393,7 @@ $("db-go").addEventListener("click", async () => {
     const hash = await wallet.send(account, { to: launched.curve, data: encodeFunctionData({ abi: curveAbi, functionName: "buy", args: [wei, min, account] }), value: wei });
     $("db-q").textContent = "Sent. Waiting for the chain…";
     const rc = await wallet.waitReceipt(hash);
-    $("db-q").innerHTML = rc.status === "0x1" ? `Bought. <a href="${esc(txUrl(hash))}" target="_blank" rel="noopener" style="color:var(--accent)">View it</a>` : "That buy reverted; nothing was spent but gas.";
+    $("db-q").innerHTML = rc.status === "0x1" ? `Bought. <a href="${esc(txUrl(hash))}" target="_blank" rel="noopener" >View it</a>` : "That buy reverted; nothing was spent but gas.";
   } catch (err) {
     $("db-q").textContent = cap(wallet.why(err)) + ".";
   } finally {

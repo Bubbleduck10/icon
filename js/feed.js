@@ -33,7 +33,7 @@ async function more() {
     end.hidden = false;
     end.innerHTML = seen.size
       ? "That's every video so far."
-      : `No videos yet. The first one appears when a launcher burns for it. <a href="launch.html" style="color:var(--accent-ink);font-weight:600;text-decoration:none">Launch a persona →</a>`;
+      : `No videos yet. The first one appears when a launcher burns for it. <a href="launch.html">Launch a persona →</a>`;
   }
 }
 

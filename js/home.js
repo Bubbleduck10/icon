@@ -1,19 +1,17 @@
 import { CONFIG } from "./config.js";
-import { $, esc, chrome, api, logoHtml, usd, eth, weiToEth, ago, modelShort, reduced, clipHtml, wireClips, amount, chainName } from "./ui.js";
+import { $, esc, chrome, api, logoHtml, usd, ago, modelShort, reduced, clipHtml, wireClips, amount, chainName } from "./ui.js";
 
 chrome("home");
 
 let coins = [];
 let feed = [];
 let filter = "all";
-let ethUsd = null;
 
 /* ---------------- numbers ---------------- */
 
 async function loadStats() {
   const s = await api("/api/stats");
   if (!s || s.error) return;
-  ethUsd = s.ethUsd;
   $("s-coins").textContent = s.coins.toLocaleString("en-US");
   $("s-awake").textContent = s.awake.toLocaleString("en-US");
   // Two chains, two units: the headline is in dollars, the parts underneath.
@@ -23,23 +21,15 @@ async function loadStats() {
   $("s-videos").textContent = (s.videos ?? 0).toLocaleString("en-US");
 }
 
+// The split's stage thresholds are fixed in SOL; the dollar figure uses the day's price.
 async function loadTerms() {
-  const t = await api("/api/terms");
-  if (!t || t.error) return;
-  const tax = (100 + t.creatorTaxBps) / 100;
-  $("t-tax").textContent = `${tax}%`;
-  // Pons keeps 30% of its own 1% curve fee and passes 70% to the coin's fee
-  // recipient (protocolFeeShareBps, measured on a fork); the creator tax is all the vault's.
-  $("t-vault").textContent = `${(t.creatorTaxBps + 70) / 100}%`;
-  const price = ethUsd ?? (await api("/api/stats"))?.ethUsd;
-  const wake = weiToEth(t.wakeWei);
-  const boot = weiToEth(t.bootstrapWei);
   const sol = await api("/api/terms?chain=solana");
-  const solPart = (v) => (sol && !sol.error && sol.enabled ? ` · ${amount(v, "SOL", 3)}` : "");
-  $("b1").textContent = `The first ${price ? `~${usd(wake * price)}` : eth(wake, 4)}`;
-  $("b2").textContent = `Up to ${price ? `~${usd(boot * price)}` : eth(boot, 4)}`;
-  $("b1").title = `${eth(wake, 4)} on Robinhood Chain${solPart(sol?.wakeSol)}`;
-  $("b2").title = `${eth(boot, 4)} on Robinhood Chain${solPart(sol?.bootstrapSol)}`;
+  if (!sol || sol.error || sol.wakeSol == null) return;
+  const show = (v) => (sol.solUsd ? `~${usd(v * sol.solUsd)}` : amount(v, "SOL", 3));
+  $("b1").textContent = `The first ${show(sol.wakeSol)}`;
+  $("b2").textContent = `Up to ${show(sol.bootstrapSol)}`;
+  $("b1").title = amount(sol.wakeSol, "SOL", 3);
+  $("b2").title = amount(sol.bootstrapSol, "SOL", 3);
 }
 
 /* ---------------- the cards ---------------- */
@@ -76,7 +66,7 @@ function renderCards() {
   if (!list.length) {
     empty.innerHTML = coins.length
       ? "No coin matches that filter right now."
-      : `No minds yet. <a href="launch.html" style="color:var(--accent-ink);font-weight:600;text-decoration:none">Launch the first one →</a>`;
+      : `No minds yet. <a href="launch.html">Launch the first one →</a>`;
   }
 }
 
@@ -121,7 +111,7 @@ async function showVideo() {
   playing = `${v[0].token}-${v[0].id}`;
   clearInterval(typing);
   $("hp-cap").textContent = "Newest on the feed";
-  $("hp-card").outerHTML = `<div id="hp-card">${clipHtml(v[0])}<div class="tile-cap" style="padding:14px 2px 0"><a href="feed.html" style="color:var(--black);font-weight:600;text-decoration:none">Watch the feed →</a></div></div>`;
+  $("hp-card").outerHTML = `<div id="hp-card">${clipHtml(v[0])}<div class="tile-cap" style="padding:14px 2px 0"><a href="feed.html" >Watch the feed →</a></div></div>`;
   wireClips($("hp-card"));
   return true;
 }

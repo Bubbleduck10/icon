@@ -121,7 +121,7 @@ async function loadCoin() {
   const badge = c.graduated ? `<span class="badge grad">Graduated</span>` : c.awake ? `<span class="badge awake">Awake</span>` : `<span class="badge asleep">Asleep</span>`;
   $("id").innerHTML = `${logoHtml(c)}<div>
       <h1>$${esc(c.symbol)}</h1>
-      <div class="meta"><span style="font-size:18px;color:var(--grey)">${esc(c.name)}</span>${badge}<span class="mono">${esc(c.model)}</span></div>
+      <div class="meta"><span style="font-size:18px;color:var(--ink-2)">${esc(c.name)}</span>${badge}<span class="mono">${esc(c.model)}</span></div>
     </div>`;
   $("links").innerHTML = `
     <a class="btn sm go" href="${esc(tradeLink(c))}" target="_blank" rel="noopener">Trade $${esc(c.symbol)}${c.chain === "solana" ? " on pump.fun" : ""}</a>
